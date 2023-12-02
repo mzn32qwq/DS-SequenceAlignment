@@ -102,8 +102,8 @@ int main(int argc, char **argv) {
     controller.onInit();
     controller.run(FLAGS_port); 
     //send the first block
-    controller.sendMessageToPeer(); //这里具体传参没写,从id_to_connections返回最上面的connection？  
-    //generate the task
+    controller.sendMessageToPeer(); //这里具体传参没写,从id_to_connections返回最上面的connection？
+
 
     return 0;
 }

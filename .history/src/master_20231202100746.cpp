@@ -43,7 +43,7 @@ public:
 
 
 
-int main(int argc, char **argv) {
+int main() {
     //initialize the variables of smith-waterman
     std::string pattern;
     std::string database;
@@ -97,13 +97,14 @@ int main(int argc, char **argv) {
 
 
     //Initialize the controller
-    gflags::ParseCommandLineFlags(&argc, &argv, true);
     MasterController controller;
     controller.onInit();
-    controller.run(FLAGS_port); 
+    controller.onopen();
+    controller.run(8080); 
     //send the first block
-    controller.sendMessageToPeer(); //这里具体传参没写,从id_to_connections返回最上面的connection？  
-    //generate the task
+    controller.sendMessageToPeer(); //这里具体传参没写,从id_to_connections返回最上面的connection？
+
+    
 
     return 0;
 }
