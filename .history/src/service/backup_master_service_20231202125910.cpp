@@ -9,5 +9,4 @@ std::string BackupMasterService::onConnectionEstablished(const std::string& peer
     return peer_id;
 }
 
-
 void BackupMasterService::onConnectionTerminated(const std::string& peer_id) {}

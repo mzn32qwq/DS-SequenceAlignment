@@ -7,7 +7,7 @@
 #include <string>
 #include <readfile.cpp>
 #include <vector>
-#include <map>
+
 
 class MessageQueue {
     DEFINE_int32(port, 8000, "port on which the websocket listens");
@@ -41,11 +41,7 @@ public:
     }
 };
 
-void connectionEstablishedCallback(const std::string& peer_id) {
-    mtxworker.lock();
-    worker[peer_id] = "Available";
-    mtxworker.unlock();
-}
+
 
 int main(int argc, char **argv) {
     //initialize the variables of smith-waterman
@@ -55,7 +51,7 @@ int main(int argc, char **argv) {
     std int mismatch_pentalty;
     std int gap_extra;
     std int gap_open;
-
+    
     std::vector<std::string> sequences;
     //assuming have mutiple sequences in the database
     readFASTAfile([&sequences](const std::string& id, const std::string& sequence) {
@@ -105,21 +101,10 @@ int main(int argc, char **argv) {
     MasterController controller;
     controller.onInit();
     controller.run(FLAGS_port); 
-
-    //initialize the message queue
-    std::map<std::string, std::string> Worker;
-    std::mutex mtxworker;
-    std::map<std::string, std::string> HistoryTask;
-    std::mutex mtxhistory;
-
-
     //send the first block
-
-
-
     controller.sendMessageToPeer(); //这里具体传参没写,从id_to_connections返回最上面的connection？  
     //generate the task
-    
+
     return 0;
 }
 

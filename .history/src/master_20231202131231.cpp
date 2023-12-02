@@ -42,7 +42,7 @@ public:
 };
 
 void connectionEstablishedCallback(const std::string& peer_id) {
-    mtxworker.lock();
+        mtxworker.lock();
     worker[peer_id] = "Available";
     mtxworker.unlock();
 }

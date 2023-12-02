@@ -41,11 +41,7 @@ public:
     }
 };
 
-void connectionEstablishedCallback(const std::string& peer_id) {
-    mtxworker.lock();
-    worker[peer_id] = "Available";
-    mtxworker.unlock();
-}
+
 
 int main(int argc, char **argv) {
     //initialize the variables of smith-waterman
@@ -111,7 +107,7 @@ int main(int argc, char **argv) {
     std::mutex mtxworker;
     std::map<std::string, std::string> HistoryTask;
     std::mutex mtxhistory;
-
+    
 
     //send the first block
 

@@ -41,11 +41,7 @@ public:
     }
 };
 
-void connectionEstablishedCallback(const std::string& peer_id) {
-    mtxworker.lock();
-    worker[peer_id] = "Available";
-    mtxworker.unlock();
-}
+
 
 int main(int argc, char **argv) {
     //initialize the variables of smith-waterman
@@ -107,10 +103,22 @@ int main(int argc, char **argv) {
     controller.run(FLAGS_port); 
 
     //initialize the message queue
-    std::map<std::string, std::string> Worker;
-    std::mutex mtxworker;
-    std::map<std::string, std::string> HistoryTask;
-    std::mutex mtxhistory;
+    std::map<std::string, std::string> myMap;
+    std::mutex mtx;
+
+    // 添加元素前上锁
+    mtx.lock();
+    myMap[1] = "One";
+    myMap[2] = "Two";
+    myMap[3] = "Three";
+    mtx.unlock(); // 添加完成后解锁
+
+    // 在访问元素前上锁
+    mtx.lock();
+    std::cout << "myMap[2]: " << myMap[2] << std::endl;
+    mtx.unlock(); // 访问完成后解锁
+
+ 
 
 
     //send the first block

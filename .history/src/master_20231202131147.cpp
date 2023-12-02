@@ -41,11 +41,7 @@ public:
     }
 };
 
-void connectionEstablishedCallback(const std::string& peer_id) {
-    mtxworker.lock();
-    worker[peer_id] = "Available";
-    mtxworker.unlock();
-}
+void check
 
 int main(int argc, char **argv) {
     //initialize the variables of smith-waterman

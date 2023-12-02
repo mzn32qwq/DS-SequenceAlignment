@@ -7,7 +7,7 @@
 #include <string>
 #include <readfile.cpp>
 #include <vector>
-#include <map>
+
 
 class MessageQueue {
     DEFINE_int32(port, 8000, "port on which the websocket listens");
@@ -41,11 +41,7 @@ public:
     }
 };
 
-void connectionEstablishedCallback(const std::string& peer_id) {
-    mtxworker.lock();
-    worker[peer_id] = "Available";
-    mtxworker.unlock();
-}
+
 
 int main(int argc, char **argv) {
     //initialize the variables of smith-waterman
@@ -106,13 +102,7 @@ int main(int argc, char **argv) {
     controller.onInit();
     controller.run(FLAGS_port); 
 
-    //initialize the message queue
-    std::map<std::string, std::string> Worker;
-    std::mutex mtxworker;
-    std::map<std::string, std::string> HistoryTask;
-    std::mutex mtxhistory;
-
-
+    
     //send the first block
 
 

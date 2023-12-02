@@ -6,8 +6,8 @@ void BackupMasterService::onNewMessage(std::string peer_id,
                                        const std::string& message, bool is_binary) {}
 
 std::string BackupMasterService::onConnectionEstablished(const std::string& peer_id) {
-    return peer_id;
+    mtx.
+    worker[peer_id] = "Available";
 }
-
 
 void BackupMasterService::onConnectionTerminated(const std::string& peer_id) {}
